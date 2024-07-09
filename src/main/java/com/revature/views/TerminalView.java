@@ -1,14 +1,21 @@
 package com.revature.views;
 
-public class TerminalView {
-    // Methods for displaying menus and handling user input
-    public void displayMainMenu() {}
-    public void displayLoginMenu() {}
-    public void displayUserMenu() {}
-    public void displayAccountMenu() {}
+import java.util.Scanner;
 
-    // Methods for user input
-    public String getUserInput() {}
-    public void showMessage(String message) {}
+public abstract class TerminalView {
+    protected Scanner scanner;
+
+    public TerminalView(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    public abstract void displayMenu();
+
+    public String getUserInput() {
+        return scanner.nextLine();
+    }
+
+    public void showMessage(String message) {
+        System.out.println(message);
+    }
 }
-

@@ -8,13 +8,18 @@ public class UserService {
     private UserRepository userRepository;
     private PasswordHasherUtility passwordHasherUtility;
 
-    public UserService(UserRepository userRepository, PasswordHasherUtility passwordHasherUtility) {
-        this.userRepository = userRepository;
-        this.passwordHasherUtility = passwordHasherUtility;
+    public UserService() {
+        this.userRepository = new UserRepository();
     }
 
     // Methods for registration, login, and logout
-    public void registerUser(String username, String password) {}
-    public UserEntity loginUser(String username, String password) {}
-    public void logoutUser(UserEntity user) {}
+    public void registerUser(String username, String password) {
+
+    }
+    public UserEntity loginUser(String username, String password) {
+        return null;
+    }
+    public void logoutUser(UserEntity user) {
+
+    }
 }

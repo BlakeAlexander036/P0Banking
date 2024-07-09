@@ -4,11 +4,27 @@ public abstract class BankAccountEntity {
     private String accountNumber;
     private double balance;
 
-    public BankAccountEntity(String accountNumber, double initialBalance) {
-        this.accountNumber = accountNumber;
-        this.balance = initialBalance;
+    public BankAccountEntity() {
+
     }
 
     // Getters and Setters
-    // Abstract methods for deposit and withdraw
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+
 }
