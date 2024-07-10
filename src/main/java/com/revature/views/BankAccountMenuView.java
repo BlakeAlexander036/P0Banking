@@ -10,12 +10,16 @@ public class BankAccountMenuView extends TerminalView {
 
     @Override
     public void displayMenu() {
+        System.out.println("Your Balance is $" + displayBalance());
         System.out.println("=== Account Menu ===");
         System.out.println("1. Deposit");
         System.out.println("2. Withdraw");
-        System.out.println("3. View Account Details");
         System.out.println("4. Back to User Menu");
         System.out.print("Select an option: ");
+    }
+
+    public String displayBalance(){
+        return "";
     }
 
 }

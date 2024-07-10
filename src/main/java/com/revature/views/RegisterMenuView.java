@@ -14,4 +14,12 @@ public class RegisterMenuView extends TerminalView {
         System.out.print("Enter username: ");
     }
 
+    public void displayEnterUsername(){
+        System.out.print("Enter username: ");
+    }
+
+    public void displayEnterPassword(){
+        System.out.print("\nEnter Password: ");
+    }
+
 }

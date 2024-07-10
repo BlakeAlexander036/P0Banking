@@ -1,19 +1,18 @@
 package com.revature.controllers;
 
 import com.revature.entities.UserEntity;
+import com.revature.services.ApplicationManagerService;
 import com.revature.services.BankAccountService;
 import com.revature.views.BankAccountMenuView;
 
 import java.util.Scanner;
 
-public class BankAccountMenuController {
+public class BankAccountMenuController extends BaseController{
     private BankAccountMenuView bankAccountMenuView;
     private BankAccountService bankAccountService;
-    String userInput;
-    private Scanner scanner;
 
-    public BankAccountMenuController(Scanner scanner, BankAccountService bankAccountService) {
-        this.scanner = scanner;
+    public BankAccountMenuController(Scanner scanner, ApplicationManagerService applicationManagerService, BankAccountService bankAccountService) {
+        super(scanner, applicationManagerService);
         this.bankAccountMenuView = new BankAccountMenuView(scanner);
         this.bankAccountService = bankAccountService;
     }
@@ -21,25 +20,23 @@ public class BankAccountMenuController {
     // method for calling Terminal view for bank accounts
     public void displayMainMenu() {
         bankAccountMenuView.displayMenu();
-        userInput = bankAccountMenuView.getUserInput();
+        String userChoice = bankAccountMenuView.getUserInput();
 
         // Handle user choice
-        switch(userInput){
-            case "1":
+        // apply action onto enums to see what user has done
+        applicationManagerService.applyAction(userChoice);
+
+        // check action enum to decide controller function to call
+        switch(applicationManagerService.getActionEnum()){
+            case DEPOSIT: // Deposit
                 deposit();
                 break;
-            case "2":
+            case WITHDRAW: // Withdraw
                 withdraw();
                 break;
-            case "3":;
-                viewAccounts();
-                break;
-            case "4":
+            case EXIT: // Exit
                 backToUserMenu();
                 break;
-            default:
-                System.out.println("Error: not a valid input. Please try again");
-                displayMainMenu();
         }
     }
 
@@ -49,16 +46,21 @@ public class BankAccountMenuController {
     }
     public void deposit() {
         // call the service to deposit money
+        bankAccountService.deposit();
+
     }
     public void withdraw() {
         // call the service to withdraw money
-    }
-    public void viewAccounts() {
-        // call the service to viewAccounts
+        bankAccountService.withdraw();
+
     }
 
     public void backToUserMenu() {
-        //
+        // simply go back to the ApplicationManager.run() loop
+    }
+
+    public void viewAccounts() {
+        // call the service to viewAccounts
     }
 }
 

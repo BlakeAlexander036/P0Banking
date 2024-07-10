@@ -37,4 +37,8 @@ public class BankAccountService {
         bankAccountRepository.viewAccounts();
         // Implement logic to retrieve and return the BankAccount objects based on the executed script.
     }
+
+    public BankAccountEntity getBankAccountEntity(){
+        return bankAccountRepository.getBankAccountEntity();
+    }
 }

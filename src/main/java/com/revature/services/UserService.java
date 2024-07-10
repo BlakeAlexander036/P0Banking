@@ -36,4 +36,16 @@ public class UserService {
         // Business logic for updating a user's password
         userRepository.updateUser();
     }
+
+    public UserEntity getUserEntity(){
+        return userRepository.getUserEntity();
+    }
+
+    public void setUsername(String username){
+        userRepository.getUserEntity().setUsername(username);
+    }
+
+    public void setPassword(String password){
+        userRepository.getUserEntity().setPassword(password);
+    }
 }

@@ -5,7 +5,7 @@ import com.revature.utilities.DatabaseScriptRunnerUtility;
 
 public class UserRepository {
     private String fileName;
-    UserEntity userEntity;
+    private UserEntity userEntity;
 
     public UserRepository(UserEntity userEntity){
         this.userEntity = userEntity;
@@ -29,6 +29,14 @@ public class UserRepository {
     public void updateUser() {
         fileName = "user_update.sql";
         DatabaseScriptRunnerUtility.runSQLScript(fileName, userEntity);
+    }
+
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
+
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
     }
 }
 

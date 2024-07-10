@@ -31,5 +31,13 @@ public class BankAccountRepository {
         DatabaseScriptRunnerUtility.runSQLScript(fileName, bankAccountEntity);
         return null;
     }
+
+    public BankAccountEntity getBankAccountEntity() {
+        return bankAccountEntity;
+    }
+
+    public void setBankAccountEntity(BankAccountEntity bankAccountEntity) {
+        this.bankAccountEntity = bankAccountEntity;
+    }
 }
 

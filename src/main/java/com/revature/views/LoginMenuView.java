@@ -15,19 +15,15 @@ public class LoginMenuView extends TerminalView {
     @Override
     public void displayMenu() {
         System.out.println("=== Login Menu ===");
-        enterUsername();
-        enterPassword();
-
+        System.out.println("Please enter your Username and Password");
     }
 
-    public void enterUsername(){
+    public void displayEnterUsername(){
         System.out.print("Enter username: ");
-        userInformation.setUsername(getUserInput());
     }
 
-    public void enterPassword(){
+    public void displayEnterPassword(){
         System.out.print("\nEnter Password: ");
-        userInformation.setPassword(getUserInput());
     }
 
 }

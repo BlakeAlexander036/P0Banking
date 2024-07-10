@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserEntity {
+    private String user_id;
     private String username;
     private String password;
 
@@ -11,6 +12,9 @@ public class UserEntity {
     }
 
     // Getters and Setters
+    public String getUser_id() {
+        return user_id;
+    }
 
     public String getUsername() {
         return username;

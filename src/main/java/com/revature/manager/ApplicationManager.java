@@ -3,8 +3,12 @@ package com.revature.manager;
 import com.revature.controllers.*;
 import com.revature.entities.BankAccountEntity;
 import com.revature.entities.UserEntity;
+import com.revature.entities.UserInputEntity;
+import com.revature.exceptions.UnhandledException;
+import com.revature.services.ApplicationManagerService;
 import com.revature.services.BankAccountService;
 import com.revature.services.UserService;
+import com.revature.enums.*;
 
 import java.util.Scanner;
 
@@ -22,10 +26,12 @@ public class ApplicationManager {
     // Services
     private BankAccountService bankAccountService;
     private UserService userService;
+    private ApplicationManagerService applicationManagerSerive;
 
     // Entities
     private UserEntity userEntity;
     private BankAccountEntity bankAccountEntity;
+    public UserInputEntity userInputEntity;
 
 
 
@@ -37,23 +43,25 @@ public class ApplicationManager {
         //Entities
         this.userEntity = new UserEntity();
         this.bankAccountEntity = new BankAccountEntity();
+        this.userInputEntity = new UserInputEntity();
 
         // Services
         this.bankAccountService = new BankAccountService(bankAccountEntity);
         this.userService = new UserService(userEntity);
+        this.applicationManagerSerive = new ApplicationManagerService(userInputEntity);
+
 
         // Controllers
-        this.mainMenuController = new MainMenuController(scanner, userService); // this needs a UserService to display who is logged in
-        this.bankAccountMenuController = new BankAccountMenuController(scanner,bankAccountService); // this needs a BankAccountService
-        this.userMenuController = new UserMenuController(scanner,userService); // this needs the UserService to display who is logged in
-        this.loginMenuController = new LoginMenuController(scanner,userService); // this needs the UserService
-        this.registerMenuController = new RegisterMenuController(scanner,userService); // this needs the UserService
+        this.mainMenuController = new MainMenuController(scanner, applicationManagerSerive,userService); // this needs a UserService to display who is logged in
+        this.bankAccountMenuController = new BankAccountMenuController(scanner, applicationManagerSerive,bankAccountService); // this needs a BankAccountService
+        this.userMenuController = new UserMenuController(scanner, applicationManagerSerive,userService); // this needs the UserService to display who is logged in
+        this.loginMenuController = new LoginMenuController(scanner, applicationManagerSerive,userService); // this needs the UserService
+        this.registerMenuController = new RegisterMenuController(scanner, applicationManagerSerive,userService); // this needs the UserService
     }
 
     // Method to run the application
     public void run() {
         // Welcome... and TerminalView popup
-        enum selection = mainMenuController.displayMainMenu(); // this needs to return a value to determine the next controller
 
         // THIS IS THE PLAN
         /*
@@ -61,22 +69,35 @@ public class ApplicationManager {
             enum will then call the controller we want.
         */
 
-
         // Main loop for the application
-        while(true){
+        while(userInputEntity.getControllerEnum() != ControllerEnum.NONE){
             // WE JUST WANT CONTROLLERS HERE IM PRETTY SURE
-            selectController(enum);
+            switch(userInputEntity.getControllerEnum()){
+                case MAIN_MENU:
+                    mainMenuController.displayMainMenu();
+                    break;
+                case USER_MENU:
+                    userMenuController.displayMainMenu();
+                    break;
+                case LOGIN_MENU:
+                    loginMenuController.displayLoginMenu();
+                    break;
+                case REGISTRATION_MENU:
+                    registerMenuController.displayLoginMenu();
+                    break;
+                case BANK_ACCOUNT_MENU:
+                    bankAccountMenuController.displayMainMenu();
+                    break;
+                case NONE:
+                    break;
+                default:
+                    throw new UnhandledException("where are we");
+            }
 
 
             // login / register / quit
 
             // once logged in... Bank account CRUD, User CRUD, Quit
-        }
-    }
-
-    public void seletcController(enum value){
-        switch(value){
-
         }
     }
 }
