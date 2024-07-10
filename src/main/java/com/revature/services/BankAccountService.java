@@ -3,27 +3,38 @@ package com.revature.services;
 import com.revature.entities.BankAccountEntity;
 import com.revature.entities.UserEntity;
 import com.revature.repositories.BankAccountRepository;
+import com.revature.utilities.DatabaseScriptRunnerUtility;
 
+import java.nio.file.Paths;
 import java.util.List;
+
+import static com.revature.utilities.DatabaseScriptRunnerUtility.runSQLScript;
 
 public class BankAccountService {
     private BankAccountRepository bankAccountRepository;
 
-    public BankAccountService() {
-        this.bankAccountRepository = new BankAccountRepository();
+    public BankAccountService(BankAccountEntity bankAccountEntity) {
+        this.bankAccountRepository = new BankAccountRepository(bankAccountEntity);
     }
 
-    // Methods for creating accounts, deposit, withdraw, view accounts
-    public void createAccount(UserEntity user, String accountNumber, double initialBalance) {
-
+    public void createAccount() {
+        // Business logic for creating an account
+        bankAccountRepository.createAccount();
     }
-    public void deposit(String accountNumber, double amount) {
 
+    public void deposit() {
+        // Business logic for depositing into an account
+        bankAccountRepository.deposit();
     }
-    public void withdraw(String accountNumber, double amount) {
 
+    public void withdraw() {
+        // Business logic for withdrawing from an account
+        bankAccountRepository.withdraw();
     }
-    public List<BankAccountEntity> viewAccounts(UserEntity user) {
-        return null;
+
+    public void viewAccounts() {
+        // Business logic for viewing accounts
+        bankAccountRepository.viewAccounts();
+        // Implement logic to retrieve and return the BankAccount objects based on the executed script.
     }
 }

@@ -24,19 +24,26 @@ public class ApplicationManager {
     private UserService userService;
 
     // Entities
-    //private UserEntity userEntity;
-    //private BankAccountEntity bankAccountEntity;
+    private UserEntity userEntity;
+    private BankAccountEntity bankAccountEntity;
 
 
 
     public ApplicationManager(Scanner scanner) {
         this.scanner = scanner;
 
-        // Initialize repositories, services, controllers, and views
-        this.bankAccountService = new BankAccountService();
-        this.userService = new UserService();
+        // Initialize entities, repositories, services, controllers, and views
 
-        this.userMenuController = new UserMenuController(scanner, userService); // this needs a UserService to display who is logged in
+        //Entities
+        this.userEntity = new UserEntity();
+        this.bankAccountEntity = new BankAccountEntity();
+
+        // Services
+        this.bankAccountService = new BankAccountService(bankAccountEntity);
+        this.userService = new UserService(userEntity);
+
+        // Controllers
+        this.mainMenuController = new MainMenuController(scanner, userService); // this needs a UserService to display who is logged in
         this.bankAccountMenuController = new BankAccountMenuController(scanner,bankAccountService); // this needs a BankAccountService
         this.userMenuController = new UserMenuController(scanner,userService); // this needs the UserService to display who is logged in
         this.loginMenuController = new LoginMenuController(scanner,userService); // this needs the UserService
@@ -45,15 +52,31 @@ public class ApplicationManager {
 
     // Method to run the application
     public void run() {
-        // Main loop for the application
-
-        // WE JUST WANT CONTROLLERS HERE IM PRETTY SURE
         // Welcome... and TerminalView popup
+        enum selection = mainMenuController.displayMainMenu(); // this needs to return a value to determine the next controller
+
+        // THIS IS THE PLAN
+        /*
+            we will have an enum that contains every possible user input option for changing a controller, that
+            enum will then call the controller we want.
+        */
 
 
-        // login / register / quit
+        // Main loop for the application
+        while(true){
+            // WE JUST WANT CONTROLLERS HERE IM PRETTY SURE
+            selectController(enum);
 
-        // once logged in... Bank account CRUD, User CRUD, Quit
 
+            // login / register / quit
+
+            // once logged in... Bank account CRUD, User CRUD, Quit
+        }
+    }
+
+    public void seletcController(enum value){
+        switch(value){
+
+        }
     }
 }

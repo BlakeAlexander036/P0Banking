@@ -6,8 +6,6 @@ import java.util.List;
 public class UserEntity {
     private String username;
     private String password;
-    private int accountNuumber;
-    private boolean isLoggediIn;
 
     public UserEntity() {
     }
@@ -30,21 +28,6 @@ public class UserEntity {
         this.password = password;
     }
 
-    public int getAccountNuumber() {
-        return accountNuumber;
-    }
-
-    public void setAccountNuumber(int accountNuumber) {
-        this.accountNuumber = accountNuumber;
-    }
-
-    public boolean isLoggediIn() {
-        return isLoggediIn;
-    }
-
-    public void setLoggediIn(boolean loggediIn) {
-        isLoggediIn = loggediIn;
-    }
 
     // Add account to user
 

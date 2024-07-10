@@ -1,8 +1,9 @@
 package com.revature.entities;
 
-public abstract class BankAccountEntity {
+public class BankAccountEntity {
     private String accountNumber;
     private double balance;
+    private String userId;
 
     public BankAccountEntity() {
 
@@ -26,5 +27,11 @@ public abstract class BankAccountEntity {
         this.accountNumber = accountNumber;
     }
 
+    public String getUserId() {
+        return userId;
+    }
 
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 }
