@@ -51,7 +51,7 @@ public class ValidatorUtility {
 
     }
 
-    public static boolean isValidBankAccountNumberAnInt(String bankAccountNumber){
+    public static boolean isValidBankAccountNumberAnInt(String bankAccountNumber) throws BankAccountNumberIsNotValidException{
         if (bankAccountNumber == null || bankAccountNumber.isEmpty()) {
             throw new BankAccountNumberIsNotValidException("Bank Account Number must be inputted as an integer");
         }
@@ -63,7 +63,7 @@ public class ValidatorUtility {
         }
     }
 
-    public static boolean isValidBankAccountNumberInEntityList(String bankAccountNumber, List<BankAccountEntity> bankAccountEntityList){
+    public static boolean isValidBankAccountNumberInEntityList(String bankAccountNumber, List<BankAccountEntity> bankAccountEntityList) throws BankAccountNumberIsNotValidException{
 
         if (isValidBankAccountNumberAnInt(bankAccountNumber)){
             for (BankAccountEntity bankAccountEntity : bankAccountEntityList){
@@ -76,8 +76,13 @@ public class ValidatorUtility {
         return false;
     }
 
-    public static boolean isValidPasswordAndUsernameLoginUserInDB(UserEntity userEntity){
+    public static boolean isValidPasswordAndUsernameLoginUserInDB(UserEntity userEntity) throws UsernameAndPasswordDoesNotExistException{
         if(!userEntity.getIsLoggedIn()){ throw new UsernameAndPasswordDoesNotExistException("User with Username and Password does not exist, re-enter Username and Password"); }
+        return true;
+    }
+
+    public static boolean isRegistered(UserEntity userEntity) {
+        if(!userEntity.getIsLoggedIn()){ throw new UsernameAlreadyExistsException("User with Username '" + userEntity.getUsername() + "' already exists, please enter a different Username."); }
         return true;
     }
 

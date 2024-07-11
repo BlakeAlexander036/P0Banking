@@ -24,6 +24,12 @@ public class UserService {
     public void registerUser() {
         // Business logic for registering a user
         userRepository.registerUser();
+
+        // after registering, login, but only if registering did not end up creating a new user
+        int userId = getUserId();
+        if (userId <= 0) { return;}
+
+        userRepository.loginUser();
     }
 
 

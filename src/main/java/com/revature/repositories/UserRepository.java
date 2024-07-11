@@ -23,8 +23,7 @@ public class UserRepository {
         // path to register
         fileName = "user_register.sql";
         ActionEnum actionEnum = ActionEnum.CREATE;
-        DatabaseScriptRunnerUtility.runSQLScript(fileName, userEntity, actionEnum);
-        loginUser();
+        userEntity.setUserId(DatabaseScriptRunnerUtility.runSQLScriptWithGeneratedKeys(fileName, userEntity, actionEnum));
     }
     public void loginUser() {
         fileName = "user_login.sql";
