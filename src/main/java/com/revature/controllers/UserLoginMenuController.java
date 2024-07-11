@@ -1,36 +1,35 @@
 package com.revature.controllers;
 
-import com.revature.entities.UserEntity;
 import com.revature.services.ApplicationManagerService;
 import com.revature.services.UserService;
-import com.revature.views.LoginMenuView;
+import com.revature.views.UserLoginMenuView;
 
 import java.util.Scanner;
 
-public class LoginMenuController extends BaseController{
-    private LoginMenuView loginMenuView;
+public class UserLoginMenuController extends BaseController{
+    private UserLoginMenuView userLoginMenuView;
     private UserService userService;
 
 
 
-    public LoginMenuController(Scanner scanner, ApplicationManagerService applicationManagerService, UserService userService) {
+    public UserLoginMenuController(Scanner scanner, ApplicationManagerService applicationManagerService, UserService userService) {
         super(scanner, applicationManagerService);
-        this.loginMenuView = new LoginMenuView(scanner);
+        this.userLoginMenuView = new UserLoginMenuView(scanner);
         this.userService = userService;
 
     }
 
     public void displayLoginMenu() {
-        loginMenuView.displayMenu(userService.getUserEntity());
-        loginMenuView.displayEnterUsername();
+        userLoginMenuView.displayMenu(userService.getUserEntity());
+        userLoginMenuView.displayEnterUsername();
 
         // set the User Entity username to input
-        String userChoice = loginMenuView.getUserInput();
+        String userChoice = userLoginMenuView.getUserInput();
         userService.setUsername(userChoice);
 
         // set the User Entity password to input
-        loginMenuView.displayEnterPassword();
-        userChoice = loginMenuView.getUserInput();
+        userLoginMenuView.displayEnterPassword();
+        userChoice = userLoginMenuView.getUserInput();
         userService.setPassword(userChoice);
 
         // Handle user choice

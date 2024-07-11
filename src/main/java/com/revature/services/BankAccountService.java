@@ -22,13 +22,19 @@ public class BankAccountService {
         bankAccountRepository.createAccount();
     }
 
-    public void deposit() {
+    public void deposit(double depositAmount) {
         // Business logic for depositing into an account
+        // need balance + depost amount
+
+
         bankAccountRepository.deposit();
     }
 
-    public void withdraw() {
+    public void withdraw(double withdrawAmount) {
         // Business logic for withdrawing from an account
+        // need to balance - withdraw amount
+
+
         bankAccountRepository.withdraw();
     }
 

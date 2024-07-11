@@ -47,16 +47,15 @@ public class BankAccountMenuController extends BaseController{
     public void createAccount() {
         // call the service for crating a bank account
     }
-    public void deposit() {
-        // call the service to deposit money
-        bankAccountService.deposit();
 
+    public void deposit(){
+        // simply go back to the ApplicationManager.run() loop
     }
-    public void withdraw() {
-        // call the service to withdraw money
-        bankAccountService.withdraw();
 
+    public void withdraw(){
+        // simply go back to the ApplicationManager.run() loop
     }
+
 
     public void backToUserMenu() {
         // simply go back to the ApplicationManager.run() loop

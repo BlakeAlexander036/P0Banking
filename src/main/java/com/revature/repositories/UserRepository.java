@@ -37,7 +37,10 @@ public class UserRepository {
             userEntity.setIsLoggedIn(true);
         }
     }
+
+
     public void logoutUser() {
+        // i dont think we need this
         fileName = "user_logout.sql";
         ActionEnum actionEnum = ActionEnum.EXIT;
         //DatabaseScriptRunnerUtility.runSQLScript(fileName, userEntity, actionEnum);

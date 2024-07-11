@@ -39,6 +39,9 @@ public class BankAccountRepository {
         return (List<BankAccountEntity>) (List<?>) bankAccountResults;
     }
 
+
+    /////////////////////////////////////
+
     public BankAccountEntity getBankAccountEntity() {
         return bankAccountEntity;
     }

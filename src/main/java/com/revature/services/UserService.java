@@ -37,7 +37,12 @@ public class UserService {
 
     public void logoutUser() {
         // Business logic for getting a user by username
-        userRepository.logoutUser();
+        //set username and password to null;
+        setUsername(null);
+        setPassword(null);
+
+        // we need to set our user entity logged in to false
+        setIsLoggedIn(false);
     }
 
     public void updateUser() {
@@ -57,7 +62,7 @@ public class UserService {
         userRepository.getUserEntity().setPassword(password);
     }
 
-    public void isLoggedIn(boolean bool){
+    public void setIsLoggedIn(boolean bool){
         userRepository.getUserEntity().setIsLoggedIn(bool);
     }
 

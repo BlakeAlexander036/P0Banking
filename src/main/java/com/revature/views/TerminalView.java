@@ -1,5 +1,6 @@
 package com.revature.views;
 
+import com.revature.entities.BankAccountEntity;
 import com.revature.entities.UserEntity;
 
 import java.util.Scanner;
@@ -24,6 +25,10 @@ public abstract class TerminalView {
         }else {
             System.out.println("Currently Not Logged In");
         }
+    }
+
+    public void displayCurrentBalance(BankAccountEntity bankAccountEntity){
+        System.out.println("Your Currrent Balance is $" + bankAccountEntity.getBalance());
     }
 
     public void showMessage(String message) {

@@ -4,11 +4,11 @@ import com.revature.entities.UserEntity;
 
 import java.util.Scanner;
 
-public class LoginMenuView extends TerminalView {
+public class UserLoginMenuView extends TerminalView {
 
     UserEntity userInformation = new UserEntity();
 
-    public LoginMenuView(Scanner scanner) {
+    public UserLoginMenuView(Scanner scanner) {
         super(scanner);
     }
 

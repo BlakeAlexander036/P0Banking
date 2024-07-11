@@ -13,4 +13,5 @@ public class BaseController {
         this.scanner = scanner;
         this.applicationManagerService = applicationManagerService;
     }
+
 }
