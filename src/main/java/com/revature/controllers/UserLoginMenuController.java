@@ -43,7 +43,7 @@ public class UserLoginMenuController extends BaseController{
 
                 login();
 
-                isNotValid = ValidatorUtility.isValidPasswordAndUsernameLoginUserInDB(userService.getUserEntity());
+                isNotValid = !ValidatorUtility.isValidPasswordAndUsernameLoginUserInDB(userService.getUserEntity());
             } catch (UsernameAndPasswordDoesNotExistException exception){
                 System.out.println(exception.getMessage());
             }
