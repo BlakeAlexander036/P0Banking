@@ -13,7 +13,8 @@ public class LoginMenuView extends TerminalView {
     }
 
     @Override
-    public void displayMenu() {
+    public void displayMenu(UserEntity userEntity) {
+        super.displayIsLoggedIn(userEntity);
         System.out.println("=== Login Menu ===");
         System.out.println("Please enter your Username and Password");
     }

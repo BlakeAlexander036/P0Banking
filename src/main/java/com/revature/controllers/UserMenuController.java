@@ -17,13 +17,13 @@ public class UserMenuController extends BaseController{
 
     public UserMenuController(Scanner scanner, ApplicationManagerService applicationManagerService, UserService userService, BankAccountService bankAccountService) {
         super(scanner, applicationManagerService);
-        this.userMenuView = new UserMenuView(scanner);
         this.userService = userService;
         this.bankAccountService = bankAccountService;
+        this.userMenuView = new UserMenuView(scanner);
     }
 
     public void displayMainMenu() {
-        userMenuView.displayMenu();
+        userMenuView.displayMenu(userService.getUserEntity());
         String userChoice = userMenuView.getUserInput();
 
         // Handle user choice

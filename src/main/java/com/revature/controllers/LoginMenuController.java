@@ -21,7 +21,7 @@ public class LoginMenuController extends BaseController{
     }
 
     public void displayLoginMenu() {
-        loginMenuView.displayMenu();
+        loginMenuView.displayMenu(userService.getUserEntity());
         loginMenuView.displayEnterUsername();
 
         // set the User Entity username to input
@@ -38,6 +38,7 @@ public class LoginMenuController extends BaseController{
         applicationManagerService.applyAction(userChoice);
 
         login();
+
     }
 
     public void login(){

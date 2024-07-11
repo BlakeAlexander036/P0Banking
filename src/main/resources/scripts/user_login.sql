@@ -1,1 +1,1 @@
-SELECT * FROM users WHERE username = ? AND password = ?;
+SELECT * FROM "user" WHERE username = ? AND password = ?;

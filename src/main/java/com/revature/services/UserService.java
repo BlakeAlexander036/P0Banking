@@ -4,17 +4,21 @@ import com.revature.entities.UserEntity;
 import com.revature.repositories.UserRepository;
 import com.revature.utilities.DatabaseScriptRunnerUtility;
 import com.revature.utilities.PasswordHasherUtility;
+import com.revature.utilities.ValidatorUtility;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.PreparedStatement;
 
 import static com.revature.utilities.DatabaseScriptRunnerUtility.runSQLScript;
 
 public class UserService {
     private UserRepository userRepository;
+    public ValidatorUtility validatorUtility;
 
     public UserService(UserEntity userEntity) {
         this.userRepository = new UserRepository(userEntity);
+        this.validatorUtility = new ValidatorUtility();
     }
 
     public void registerUser() {
@@ -22,8 +26,12 @@ public class UserService {
         userRepository.registerUser();
     }
 
+
     public void loginUser() {
         // Business logic for logging in a user
+        // we need to validate that string is less than equal to 30 characters
+
+
         userRepository.loginUser();
     }
 
@@ -47,5 +55,13 @@ public class UserService {
 
     public void setPassword(String password){
         userRepository.getUserEntity().setPassword(password);
+    }
+
+    public void isLoggedIn(boolean bool){
+        userRepository.getUserEntity().setIsLoggedIn(bool);
+    }
+
+    public boolean getIsLoggedIn(){
+        return userRepository.getUserEntity().getIsLoggedIn();
     }
 }

@@ -1,7 +1,9 @@
 package com.revature.controllers;
 
+import com.revature.exceptions.UsernameIsNotValidException;
 import com.revature.services.ApplicationManagerService;
 import com.revature.services.UserService;
+import com.revature.utilities.ValidatorUtility;
 import com.revature.views.RegisterMenuView;
 
 import java.util.Scanner;
@@ -9,6 +11,7 @@ import java.util.Scanner;
 public class RegisterMenuController extends BaseController{
     private RegisterMenuView registerMenuView;
     private UserService userService;
+    String userChoice;
 
     public RegisterMenuController(Scanner scanner, ApplicationManagerService applicationManagerService, UserService userService) {
         super(scanner, applicationManagerService);
@@ -17,19 +20,34 @@ public class RegisterMenuController extends BaseController{
     }
 
     public void displayLoginMenu() {
-        registerMenuView.displayMenu();
-        String username = registerMenuView.getUserInput();
         // Handle login
-        registerMenuView.displayMenu();
-        registerMenuView.displayEnterUsername();
+        registerMenuView.displayMenu(userService.getUserEntity());
 
         // set the User Entity username to input
-        registerMenuView.displayEnterPassword();
-        String userChoice = registerMenuView.getUserInput();
+        boolean isNotValid = true;
+        while(isNotValid){
+            try{
+                registerMenuView.displayEnterUsername();
+                userChoice = registerMenuView.getUserInput();
+                isNotValid = !ValidatorUtility.isValidUsername(userChoice);
+            }catch (UsernameIsNotValidException exception){
+                System.out.println(exception.getMessage());
+            }
+        }
         userService.setUsername(userChoice);
 
+
         // set the User Entity password to input
-        userChoice = registerMenuView.getUserInput();
+        isNotValid = true;
+        while(isNotValid){
+            try{
+                registerMenuView.displayEnterPassword();
+                userChoice = registerMenuView.getUserInput();
+                isNotValid = !ValidatorUtility.isValidPassword(userChoice);
+            }catch (UsernameIsNotValidException exception){
+                System.out.println(exception.getMessage());
+            }
+        }
         userService.setPassword(userChoice);
 
         // Handle user choice
@@ -40,7 +58,6 @@ public class RegisterMenuController extends BaseController{
     }
 
     public void register(){
-        // when registering we need to validate
         // call userService to register
         userService.registerUser();
     }

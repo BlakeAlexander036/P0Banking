@@ -4,16 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserEntity {
-    private String user_id;
+    private int user_id;
     private String username;
     private String password;
+    private boolean isLoggedIn;
 
     public UserEntity() {
     }
 
     // Getters and Setters
-    public String getUser_id() {
+    public int getUserId() {
         return user_id;
+    }
+
+    public void setUserId(int user_id) {
+        this.user_id = user_id;
     }
 
     public String getUsername() {
@@ -32,8 +37,15 @@ public class UserEntity {
         this.password = password;
     }
 
+    public boolean getIsLoggedIn() {
+        return isLoggedIn;
+    }
 
-    // Add account to user
+    public void setIsLoggedIn(boolean loggedIn) {
+        isLoggedIn = loggedIn;
+    }
+
+// Add account to user
 
 }
 

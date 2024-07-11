@@ -1,2 +1,2 @@
-UPDATE bank_accounts SET balance = balance - ? WHERE account_number = ?;
+UPDATE BankAccount SET balance = ? WHERE bank_account_number = ?;
 

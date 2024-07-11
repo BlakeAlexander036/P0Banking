@@ -1,5 +1,7 @@
 package com.revature.views;
 
+import com.revature.entities.UserEntity;
+
 import java.util.Scanner;
 
 public class BankAccountMenuView extends TerminalView {
@@ -9,7 +11,8 @@ public class BankAccountMenuView extends TerminalView {
     }
 
     @Override
-    public void displayMenu() {
+    public void displayMenu(UserEntity userEntity) {
+        super.displayIsLoggedIn(userEntity);
         System.out.println("Your Balance is $" + displayBalance());
         System.out.println("=== Account Menu ===");
         System.out.println("1. Deposit");

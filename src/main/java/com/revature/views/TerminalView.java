@@ -1,5 +1,7 @@
 package com.revature.views;
 
+import com.revature.entities.UserEntity;
+
 import java.util.Scanner;
 
 public abstract class TerminalView {
@@ -9,10 +11,19 @@ public abstract class TerminalView {
         this.scanner = scanner;
     }
 
-    public abstract void displayMenu();
+    public abstract void displayMenu(UserEntity entity); // need user entity to say if your logged in or not when displaying menu
 
     public String getUserInput() {
         return scanner.nextLine();
+    }
+
+    public void displayIsLoggedIn(UserEntity userEntity){
+        if(userEntity.getIsLoggedIn()){
+            System.out.println("Currently Logged In As: " + userEntity.getUsername());
+            System.out.println("UserId: " + userEntity.getUserId());
+        }else {
+            System.out.println("Currently Not Logged In");
+        }
     }
 
     public void showMessage(String message) {

@@ -3,6 +3,7 @@ package com.revature.controllers;
 import com.revature.entities.UserEntity;
 import com.revature.services.ApplicationManagerService;
 import com.revature.services.BankAccountService;
+import com.revature.services.UserService;
 import com.revature.views.BankAccountMenuView;
 
 import java.util.Scanner;
@@ -10,16 +11,18 @@ import java.util.Scanner;
 public class BankAccountMenuController extends BaseController{
     private BankAccountMenuView bankAccountMenuView;
     private BankAccountService bankAccountService;
+    private UserService userService;
 
-    public BankAccountMenuController(Scanner scanner, ApplicationManagerService applicationManagerService, BankAccountService bankAccountService) {
+    public BankAccountMenuController(Scanner scanner, ApplicationManagerService applicationManagerService, BankAccountService bankAccountService, UserService userService) {
         super(scanner, applicationManagerService);
         this.bankAccountMenuView = new BankAccountMenuView(scanner);
         this.bankAccountService = bankAccountService;
+        this.userService = userService;
     }
 
     // method for calling Terminal view for bank accounts
     public void displayMainMenu() {
-        bankAccountMenuView.displayMenu();
+        bankAccountMenuView.displayMenu(userService.getUserEntity());
         String userChoice = bankAccountMenuView.getUserInput();
 
         // Handle user choice

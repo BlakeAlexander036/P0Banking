@@ -1,9 +1,9 @@
 package com.revature.entities;
 
 public class BankAccountEntity {
-    private String accountNumber;
+    private int accountNumber;
     private double balance;
-    private String userId;
+    private int userId;
 
     public BankAccountEntity() {
 
@@ -19,19 +19,19 @@ public class BankAccountEntity {
         this.balance = balance;
     }
 
-    public String getAccountNumber() {
+    public int getAccountNumber() {
         return accountNumber;
     }
 
-    public void setAccountNumber(String accountNumber) {
+    public void setAccountNumber(int accountNumber) {
         this.accountNumber = accountNumber;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 }

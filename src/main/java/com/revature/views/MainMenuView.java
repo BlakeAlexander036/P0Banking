@@ -1,5 +1,7 @@
 package com.revature.views;
 
+import com.revature.entities.UserEntity;
+
 import java.util.Scanner;
 
 public class MainMenuView extends TerminalView {
@@ -10,7 +12,8 @@ public class MainMenuView extends TerminalView {
     }
 
     @Override
-    public void displayMenu() {
+    public void displayMenu(UserEntity userEntity) {
+        super.displayIsLoggedIn(userEntity);
         System.out.println("=== Main Menu ===");
         System.out.println("1. Register");
         System.out.println("2. Login");

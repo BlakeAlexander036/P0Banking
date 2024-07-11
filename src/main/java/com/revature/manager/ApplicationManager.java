@@ -53,8 +53,8 @@ public class ApplicationManager {
 
         // Controllers
         this.mainMenuController = new MainMenuController(scanner, applicationManagerSerive,userService); // this needs a UserService to display who is logged in
-        this.bankAccountMenuController = new BankAccountMenuController(scanner, applicationManagerSerive,bankAccountService); // this needs a BankAccountService
-        this.userMenuController = new UserMenuController(scanner, applicationManagerSerive,userService); // this needs the UserService to display who is logged in
+        this.bankAccountMenuController = new BankAccountMenuController(scanner, applicationManagerSerive,bankAccountService, userService); // this needs a BankAccountService
+        this.userMenuController = new UserMenuController(scanner, applicationManagerSerive,userService, bankAccountService); // this needs the UserService to display who is logged in
         this.loginMenuController = new LoginMenuController(scanner, applicationManagerSerive,userService); // this needs the UserService
         this.registerMenuController = new RegisterMenuController(scanner, applicationManagerSerive,userService); // this needs the UserService
     }
