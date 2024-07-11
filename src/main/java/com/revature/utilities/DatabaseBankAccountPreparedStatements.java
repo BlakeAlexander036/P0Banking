@@ -43,4 +43,10 @@ public class DatabaseBankAccountPreparedStatements {
         preparedStatement.setInt(3, bankAccountEntity.getUserId());
         return preparedStatement;
     }
+
+    // delete an account
+    public static PreparedStatement getDeleteBankAccountPreparedStatement(PreparedStatement preparedStatement, BankAccountEntity bankAccountEntity) throws SQLException {
+        preparedStatement.setInt(1, bankAccountEntity.getAccountNumber());
+        return preparedStatement;
+    }
 }

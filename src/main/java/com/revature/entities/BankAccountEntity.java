@@ -5,6 +5,7 @@ public class BankAccountEntity {
     private double balance;
     private int userId;
 
+
     public BankAccountEntity() {
 
     }
@@ -34,4 +35,6 @@ public class BankAccountEntity {
     public void setUserId(int userId) {
         this.userId = userId;
     }
+
+
 }

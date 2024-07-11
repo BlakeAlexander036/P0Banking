@@ -98,16 +98,17 @@ public class DatabaseScriptRunnerUtility {
         } else if (entity instanceof BankAccountEntity) {
             BankAccountEntity bankAccountEntity = (BankAccountEntity) entity;
             switch(actionEnum){
-                case DEPOSIT:
+                case UPDATE:
                     DatabaseBankAccountPreparedStatements.getDepositBankAccountPreparedStatement(preparedStatement, bankAccountEntity);
                     break;
-                case WITHDRAW:
-                    DatabaseBankAccountPreparedStatements.getWithdrawBankAccountPreparedStatement(preparedStatement, bankAccountEntity);
                 case CREATE:
                     DatabaseBankAccountPreparedStatements.getCreateBankAccountPreparedStatement(preparedStatement, bankAccountEntity);
                     break;
                 case READ:
                     DatabaseBankAccountPreparedStatements.getViewBankAccountPreparedStatement(preparedStatement, bankAccountEntity);
+                    break;
+                case DELETE:
+                    DatabaseBankAccountPreparedStatements.getDeleteBankAccountPreparedStatement(preparedStatement, bankAccountEntity);
                     break;
 
             }

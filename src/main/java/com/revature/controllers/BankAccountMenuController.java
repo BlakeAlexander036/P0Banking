@@ -1,10 +1,10 @@
 package com.revature.controllers;
 
-import com.revature.entities.UserEntity;
 import com.revature.services.ApplicationManagerService;
 import com.revature.services.BankAccountService;
 import com.revature.services.UserService;
 import com.revature.views.BankAccountMenuView;
+
 
 import java.util.Scanner;
 
@@ -30,39 +30,17 @@ public class BankAccountMenuController extends BaseController{
         applicationManagerService.applyAction(userChoice);
 
         // check action enum to decide controller function to call
-        switch(applicationManagerService.getActionEnum()){
-            case DEPOSIT: // Deposit
-                deposit();
-                break;
-            case WITHDRAW: // Withdraw
-                withdraw();
-                break;
-            case EXIT: // Exit
-                backToUserMenu();
-                break;
-        }
+
     }
 
     // Methods for handling account creation, deposit, withdraw, view accounts
-    public void createAccount() {
+    public void updateBalance() {
         // call the service for crating a bank account
     }
 
-    public void deposit(){
+    public void closeAccount(){
         // simply go back to the ApplicationManager.run() loop
     }
 
-    public void withdraw(){
-        // simply go back to the ApplicationManager.run() loop
-    }
-
-
-    public void backToUserMenu() {
-        // simply go back to the ApplicationManager.run() loop
-    }
-
-    public void viewAccounts() {
-        // call the service to viewAccounts
-    }
 }
 

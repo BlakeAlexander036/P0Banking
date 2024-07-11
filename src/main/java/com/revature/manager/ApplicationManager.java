@@ -18,12 +18,14 @@ public class ApplicationManager {
 
     // Controllers
     private UserMenuController userMenuController;
+    private BankAccountsMenuController bankAccountsMenuController;
     private BankAccountMenuController bankAccountMenuController;
     private BankAccountDepositController bankAccountDepositController;
     private BankAccountWithdrawController bankAccountWithdrawController;
     private UserLoginMenuController userLoginMenuController;
     private MainMenuController mainMenuController;
     private UserRegisterMenuController userRegisterMenuController;
+    private BankAccountCloseController bankAccountCloseController;
 
     // Services
     private BankAccountService bankAccountService;
@@ -56,11 +58,13 @@ public class ApplicationManager {
         // Controllers
         this.mainMenuController = new MainMenuController(scanner, applicationManagerSerive,userService); // this needs a UserService to display who is logged in
         this.bankAccountMenuController = new BankAccountMenuController(scanner, applicationManagerSerive,bankAccountService, userService); // this needs a BankAccountService
+        this.bankAccountsMenuController = new BankAccountsMenuController(scanner, applicationManagerSerive,bankAccountService, userService); // this needs a BankAccountService
         this.userMenuController = new UserMenuController(scanner, applicationManagerSerive,userService, bankAccountService); // this needs the UserService to display who is logged in
         this.userLoginMenuController = new UserLoginMenuController(scanner, applicationManagerSerive,userService); // this needs the UserService
         this.userRegisterMenuController = new UserRegisterMenuController(scanner, applicationManagerSerive,userService); // this needs the UserService
         this.bankAccountDepositController = new BankAccountDepositController(scanner, applicationManagerSerive,bankAccountService, userService); // this needs a BankAccountService
         this.bankAccountWithdrawController = new BankAccountWithdrawController(scanner, applicationManagerSerive,bankAccountService, userService); // this needs a BankAccountService
+        this.bankAccountCloseController = new BankAccountCloseController(scanner, applicationManagerSerive,bankAccountService, userService); // this needs a BankAccountService
     }
 
     // Method to run the application
@@ -87,6 +91,9 @@ public class ApplicationManager {
                     break;
                 case REGISTRATION_MENU:
                     userRegisterMenuController.displayLoginMenu();
+                    break;
+                case BANK_ACCOUNTS_MENU:
+                    bankAccountsMenuController.displayMainMenu();
                     break;
                 case BANK_ACCOUNT_MENU:
                     bankAccountMenuController.displayMainMenu();

@@ -48,7 +48,7 @@ public class UserRepository {
 
     public void updateUser() {
         fileName = "user_update.sql";
-        ActionEnum actionEnum = ActionEnum.UPDATE_USER;
+        ActionEnum actionEnum = ActionEnum.UPDATE;
         DatabaseScriptRunnerUtility.runSQLScript(fileName, userEntity, actionEnum);
     }
 

@@ -1,10 +1,12 @@
 package com.revature.controllers;
 
+import com.revature.exceptions.BalanceIsNotValidException;
+import com.revature.exceptions.UsernameIsNotValidException;
 import com.revature.services.ApplicationManagerService;
 import com.revature.services.BankAccountService;
 import com.revature.services.UserService;
+import com.revature.utilities.ValidatorUtility;
 import com.revature.views.BankAccountDepositView;
-import com.revature.views.BankAccountMenuView;
 
 import java.util.Scanner;
 
@@ -23,17 +25,24 @@ public class BankAccountDepositController extends BaseController{
 
     // method for calling Terminal view for bank accounts
     public void displayMainMenu() {
-        bankAccountDepositView.displayMenu(userService.getUserEntity());
-        String userChoice = bankAccountDepositView.getUserInput();
+        String userChoice = "";
 
+        // set the User Entity username to input
+        boolean isNotValid = true;
+        while(isNotValid){
+            try{
+                bankAccountDepositView.displayMenu(userService.getUserEntity());
+                userChoice = bankAccountDepositView.getUserInput();
+                isNotValid = !ValidatorUtility.isValidBalance(userChoice);
+            }catch (BalanceIsNotValidException exception){
+                System.out.println(exception.getMessage());
+            }
+        }
         // Handle user choice
         // apply action onto enums to see what user has done
         applicationManagerService.applyAction(userChoice);
 
-        // check action enum to decide controller function to call
-        switch(applicationManagerService.getActionEnum()){
-
-        }
+        deposit(Double.parseDouble(userChoice));
     }
 
     public void deposit(double depositAmount) {

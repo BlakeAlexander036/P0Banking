@@ -6,6 +6,7 @@ import com.revature.repositories.BankAccountRepository;
 import com.revature.utilities.DatabaseScriptRunnerUtility;
 
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.revature.utilities.DatabaseScriptRunnerUtility.runSQLScript;
@@ -44,7 +45,57 @@ public class BankAccountService {
         // Implement logic to retrieve and return the BankAccount objects based on the executed script.
     }
 
+    // bank account entity
     public BankAccountEntity getBankAccountEntity(){
         return bankAccountRepository.getBankAccountEntity();
+    }
+
+    public void setBankAccountEntity(BankAccountEntity bankAccountEntity) {
+        bankAccountRepository.setBankAccountEntity(bankAccountEntity);
+    }
+
+    // bank account entity balance
+    public double getBankAccountBalance(){
+        return bankAccountRepository.getBankAccountBalance();
+    }
+
+    public void setBankAccountBalance(double balance) {
+        bankAccountRepository.setBankAccountBalance(balance);
+    }
+
+    // bank account entity user id
+    public int getBankAccountUserId(){
+        return bankAccountRepository.getBankAccountUserId();
+    }
+
+    public void setBankAccountUserId(int userId) {
+        bankAccountRepository.setBankAccountUserId(userId);
+    }
+
+    // bank account number
+    public int getBankAccountNumber(){
+        return bankAccountRepository.getBankAccountNumber();
+    }
+
+    public void setBankAccountBalance(int bankAccountNumber) {
+        bankAccountRepository.setBankAccountBalance(bankAccountNumber);
+    }
+
+    // bank account entity list
+    public List<BankAccountEntity> getBankAccountEntityList(){
+        return bankAccountRepository.getBankAccountEntityList();
+    }
+
+    public void setBankAccountEntityList(List<BankAccountEntity> bankAccountEntityList) {
+        bankAccountRepository.setBankAccountEntityList(bankAccountEntityList);
+    }
+
+    // selected bank account
+    public double getBankAccountSelectedBankAccountNumber(){
+        return bankAccountRepository.getBankAccountSelectedBankAccountNumber();
+    }
+
+    public void setBankAccountSelectedBankAccountNumber(int bankAccountSelectedBankNumber) {
+        bankAccountRepository.setBankAccountSelectedBankAccountNumber(bankAccountSelectedBankNumber);
     }
 }

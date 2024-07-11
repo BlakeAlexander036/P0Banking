@@ -3,26 +3,27 @@ package com.revature.controllers;
 import com.revature.services.ApplicationManagerService;
 import com.revature.services.BankAccountService;
 import com.revature.services.UserService;
-import com.revature.views.BankAccountWithdrawView;
+import com.revature.views.BankAccountDepositView;
 
 import java.util.Scanner;
 
-public class BankAccountWithdrawController extends BaseController {
-    private BankAccountWithdrawView bankAccountWithdrawView;
+public class BankAccountCloseController extends BaseController{
+
+    private BankAccountCloseView bankAccountCloseView;
     private BankAccountService bankAccountService;
     private UserService userService;
 
-    public BankAccountWithdrawController(Scanner scanner, ApplicationManagerService applicationManagerService, BankAccountService bankAccountService, UserService userService) {
+    public BankAccountCloseController(Scanner scanner, ApplicationManagerService applicationManagerService, BankAccountService bankAccountService, UserService userService) {
         super(scanner, applicationManagerService);
-        this.bankAccountWithdrawView = new BankAccountWithdrawView(scanner);
+        this.bankAccountDepositView = new BankAccountDepositView(scanner);
         this.bankAccountService = bankAccountService;
         this.userService = userService;
     }
 
     // method for calling Terminal view for bank accounts
     public void displayMainMenu() {
-        bankAccountWithdrawView.displayMenu(userService.getUserEntity());
-        String userChoice = bankAccountWithdrawView.getUserInput();
+        bankAccountCloseView.displayMenu(userService.getUserEntity());
+        String userChoice = bankAccountCloseView.getUserInput();
 
         // Handle user choice
         // apply action onto enums to see what user has done
@@ -34,9 +35,8 @@ public class BankAccountWithdrawController extends BaseController {
         }
     }
 
-    public void withdraw(double withdrawAmount) {
-        // call the service to withdraw money
-        bankAccountService.withdraw(withdrawAmount);
-
+    public void close() {
+        // call the service to close account
+        bankAccountService.close();
     }
 }

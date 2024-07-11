@@ -6,9 +6,9 @@ import com.revature.entities.UserEntity;
 import java.util.List;
 import java.util.Scanner;
 
-public class BankAccountMenuView extends TerminalView {
+public class BankAccountsMenuView extends TerminalView {
 
-    public BankAccountMenuView(Scanner scanner) {
+    public BankAccountsMenuView(Scanner scanner) {
         super(scanner);
     }
 
@@ -16,12 +16,7 @@ public class BankAccountMenuView extends TerminalView {
     public void displayMenu(UserEntity userEntity) {
         super.displayIsLoggedIn(userEntity);
         //super.displayCurrentBalance(bankAccountEntity);
-        System.out.println("=== Bank Account Menu ===");
-        System.out.println("1. Deposit");
-        System.out.println("2. Withdraw");
-        System.out.println("3. Close Account");
-        System.out.println("4. Exit");
-        System.out.print("Select an option: ");
+        System.out.print("Select or Create ('c') a Bank Account: ");
     }
 
     public void displayAllBankAccounts(List<BankAccountEntity> bankAccountEntityList){

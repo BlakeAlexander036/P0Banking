@@ -42,6 +42,12 @@ public class ApplicationManagerService {
             case BANK_ACCOUNT_MENU:
                 bankAccountMenu();
                 break;
+            case BANK_ACCOUNTS_MENU:
+                bankAccountsMenu();
+                break;
+            case BANK_ACCOUNT_CLOSE:
+                bankAccountCloseMenu();
+                break;
             default:
                 throw new UnhandledException("where are we");
         }
@@ -69,11 +75,11 @@ public class ApplicationManagerService {
         switch(userInputEntity.getUserInputString()){
             case "1": // Create Bank Account
                 userInputEntity.setActionEnum(ActionEnum.CREATE);
-                userInputEntity.setControllerEnum(ControllerEnum.BANK_ACCOUNT_MENU);
+                userInputEntity.setControllerEnum(ControllerEnum.BANK_ACCOUNTS_MENU);
                 break;
             case "2": // View Bank Accounts
                 userInputEntity.setActionEnum(ActionEnum.READ);
-                userInputEntity.setControllerEnum(ControllerEnum.BANK_ACCOUNT_MENU);
+                userInputEntity.setControllerEnum(ControllerEnum.BANK_ACCOUNTS_MENU);
                 break;
             case "3": // Logout
                 userInputEntity.setActionEnum(ActionEnum.EXIT);
@@ -98,22 +104,46 @@ public class ApplicationManagerService {
         // the user service should check if username is empty, if so, update username, otherwise update password
     }
 
+    public void bankAccountsMenu(){
+                // View a specificbank account
+                userInputEntity.setActionEnum(ActionEnum.READ);
+                userInputEntity.setControllerEnum(ControllerEnum.BANK_ACCOUNT_MENU);
+    }
+
     public void bankAccountMenu(){
         switch(userInputEntity.getUserInputString()){
             case "1": // deposit
-                userInputEntity.setActionEnum(ActionEnum.DEPOSIT);
-                userInputEntity.setControllerEnum(ControllerEnum.BANK_ACCOUNT_MENU);
+                userInputEntity.setActionEnum(ActionEnum.UPDATE);
+                userInputEntity.setControllerEnum(ControllerEnum.BANK_ACCOUNT_DEPOSIT);
                 break;
             case "2": // withdraw
-                userInputEntity.setActionEnum(ActionEnum.WITHDRAW);
-                userInputEntity.setControllerEnum(ControllerEnum.BANK_ACCOUNT_MENU);
+                userInputEntity.setActionEnum(ActionEnum.UPDATE);
+                userInputEntity.setControllerEnum(ControllerEnum.BANK_ACCOUNT_WITHDRAW);
                 break;
-            case "3": // back to user menu
+            case "3": // Close account
+                userInputEntity.setActionEnum(ActionEnum.DELETE);
+                userInputEntity.setControllerEnum(ControllerEnum.BANK_ACCOUNT_CLOSE);
+                break;
+            case "4": // back to bank accounts menu
                 userInputEntity.setActionEnum(ActionEnum.EXIT);
-                userInputEntity.setControllerEnum(ControllerEnum.USER_MENU);
+                userInputEntity.setControllerEnum(ControllerEnum.BANK_ACCOUNTS_MENU);
                 break;
         }
     }
+
+    public void bankAccountCloseMenu(){
+        switch(userInputEntity.getUserInputString()){
+            case "y": // deposit
+                userInputEntity.setActionEnum(ActionEnum.DELETE);
+                userInputEntity.setControllerEnum(ControllerEnum.BANK_ACCOUNTS_MENU);
+                break;
+            case "n": // withdraw
+                userInputEntity.setActionEnum(ActionEnum.READ);
+                userInputEntity.setControllerEnum(ControllerEnum.BANK_ACCOUNT_MENU);
+                break;
+        }
+    }
+
 
     public ControllerEnum getControllerEnum(){
         return userInputEntity.getControllerEnum();
