@@ -1,5 +1,6 @@
 package com.revature.views;
 
+import com.revature.entities.BankAccountEntity;
 import com.revature.entities.UserEntity;
 
 import java.util.Scanner;
@@ -10,10 +11,9 @@ public class BankAccountWithdrawView extends TerminalView {
         super(scanner);
     }
 
-    @Override
-    public void displayMenu(UserEntity userEntity) {
+    public void displayMenu(UserEntity userEntity, BankAccountEntity bankAccountEntity) {
         super.displayIsLoggedIn(userEntity);
-        //super.displayCurrentBalance(bankAccountEntity);
+        super.displayCurrentBankAccount(bankAccountEntity);
         System.out.println("=== Withdraw Menu ===");
         System.out.println("Enter the amount you wish to withdraw: ");
     }

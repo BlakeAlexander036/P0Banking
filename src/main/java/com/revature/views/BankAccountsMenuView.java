@@ -12,15 +12,24 @@ public class BankAccountsMenuView extends TerminalView {
         super(scanner);
     }
 
-    @Override
-    public void displayMenu(UserEntity userEntity) {
+    public void displayMenu(UserEntity userEntity, List<BankAccountEntity> bankAccountEntityList) {
         super.displayIsLoggedIn(userEntity);
-        //super.displayCurrentBalance(bankAccountEntity);
-        System.out.print("Select or Create ('c') a Bank Account: ");
+        displayAllBankAccounts(bankAccountEntityList);
+        System.out.println("=== Bank Accounts Menu ===");
+        System.out.println("0. Exit ");
+        System.out.print("Select a Bank Account by its Bank Account Number or exit ('0'): ");
     }
 
     public void displayAllBankAccounts(List<BankAccountEntity> bankAccountEntityList){
+        if (bankAccountEntityList == null || bankAccountEntityList.isEmpty()) {
+            System.out.println("No bank accounts to display.");
+            return;
+        }
 
+        System.out.println("=== Bank Accounts ===");
+        for(BankAccountEntity bankAccountEntity : bankAccountEntityList){
+            System.out.println(bankAccountEntity.toString());
+        }
     }
 
 }

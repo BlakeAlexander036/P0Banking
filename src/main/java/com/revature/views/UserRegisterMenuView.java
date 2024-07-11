@@ -10,7 +10,6 @@ public class UserRegisterMenuView extends TerminalView {
         super(scanner);
     }
 
-    @Override
     public void displayMenu(UserEntity userEntity) {
         super.displayIsLoggedIn(userEntity);
         System.out.println("=== Register Menu ===");

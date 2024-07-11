@@ -18,15 +18,18 @@ public class BankAccountService {
         this.bankAccountRepository = new BankAccountRepository(bankAccountEntity);
     }
 
-    public void createAccount() {
+    public void createAccount(UserEntity userEntity) {
         // Business logic for creating an account
+        bankAccountRepository.setBankAccountUserId(userEntity.getUserId());
+
         bankAccountRepository.createAccount();
     }
 
     public void deposit(double depositAmount) {
         // Business logic for depositing into an account
         // need balance + depost amount
-
+        double newBalance = bankAccountRepository.getBankAccountBalance() + depositAmount;
+        bankAccountRepository.setBankAccountBalance(newBalance);
 
         bankAccountRepository.deposit();
     }
@@ -34,7 +37,8 @@ public class BankAccountService {
     public void withdraw(double withdrawAmount) {
         // Business logic for withdrawing from an account
         // need to balance - withdraw amount
-
+        double newBalance = bankAccountRepository.getBankAccountBalance() - withdrawAmount;
+        bankAccountRepository.setBankAccountBalance(newBalance);
 
         bankAccountRepository.withdraw();
     }
@@ -42,12 +46,27 @@ public class BankAccountService {
     public void viewAccounts() {
         // Business logic for viewing accounts
         bankAccountRepository.viewAccounts();
-        // Implement logic to retrieve and return the BankAccount objects based on the executed script.
+    }
+
+    public BankAccountEntity selectBankAccount(String bankAccountNumber){
+        List<BankAccountEntity> bankAccountEntityList = getBankAccountEntityList();
+        for (BankAccountEntity bankAccountEntity : bankAccountEntityList) {
+            if (bankAccountEntity.getAccountNumber() == Integer.parseInt(bankAccountNumber)){
+                return bankAccountEntity;
+            }
+        }
+        return null; // Account not found
     }
 
     public void close(){
         // close the account
         bankAccountRepository.closeAccount();
+
+        // update the list now that we closed an account
+        bankAccountRepository.viewAccounts();
+
+        // update the current bank account entity account number
+        bankAccountRepository.setBankAccountNumber(-1);
     }
 
     //////////////////////////////////////////////////

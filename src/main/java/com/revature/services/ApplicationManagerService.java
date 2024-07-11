@@ -48,6 +48,12 @@ public class ApplicationManagerService {
             case BANK_ACCOUNT_CLOSE:
                 bankAccountCloseMenu();
                 break;
+            case BANK_ACCOUNT_DEPOSIT:
+                bankAccountDepositMenu();
+                break;
+            case BANK_ACCOUNT_WITHDRAW:
+                bankAccountWithdrawMenu();
+                break;
             default:
                 throw new UnhandledException("where are we");
         }
@@ -75,7 +81,7 @@ public class ApplicationManagerService {
         switch(userInputEntity.getUserInputString()){
             case "1": // Create Bank Account
                 userInputEntity.setActionEnum(ActionEnum.CREATE);
-                userInputEntity.setControllerEnum(ControllerEnum.BANK_ACCOUNTS_MENU);
+                userInputEntity.setControllerEnum(ControllerEnum.USER_MENU); // we want to stay in user menu
                 break;
             case "2": // View Bank Accounts
                 userInputEntity.setActionEnum(ActionEnum.READ);
@@ -90,8 +96,18 @@ public class ApplicationManagerService {
 
     // once logged in, go to user menu
     public void loginMenu(){
-        userInputEntity.setActionEnum(ActionEnum.READ);
-        userInputEntity.setControllerEnum(ControllerEnum.USER_MENU);
+        switch (userInputEntity.getUserInputString()){
+            case "0":
+                userInputEntity.setActionEnum(ActionEnum.NONE);
+                userInputEntity.setControllerEnum(ControllerEnum.MAIN_MENU);
+                break;
+            default:
+                userInputEntity.setActionEnum(ActionEnum.READ);
+                userInputEntity.setControllerEnum(ControllerEnum.USER_MENU);
+                break;
+        }
+
+
 
         // the user service should check if username is empty, if so, update username, otherwise update password
     }
@@ -104,10 +120,18 @@ public class ApplicationManagerService {
         // the user service should check if username is empty, if so, update username, otherwise update password
     }
 
-    public void bankAccountsMenu(){
+    public void bankAccountsMenu() {
+        switch (userInputEntity.getUserInputString()) {
+            case "0":
+                userInputEntity.setActionEnum(ActionEnum.EXIT);
+                userInputEntity.setControllerEnum(ControllerEnum.USER_MENU);
+                break;
+            default:
                 // View a specificbank account
                 userInputEntity.setActionEnum(ActionEnum.READ);
                 userInputEntity.setControllerEnum(ControllerEnum.BANK_ACCOUNT_MENU);
+                break;
+        }
     }
 
     public void bankAccountMenu(){
@@ -121,7 +145,7 @@ public class ApplicationManagerService {
                 userInputEntity.setControllerEnum(ControllerEnum.BANK_ACCOUNT_WITHDRAW);
                 break;
             case "3": // Close account
-                userInputEntity.setActionEnum(ActionEnum.DELETE);
+                userInputEntity.setActionEnum(ActionEnum.READ);
                 userInputEntity.setControllerEnum(ControllerEnum.BANK_ACCOUNT_CLOSE);
                 break;
             case "4": // back to bank accounts menu
@@ -133,17 +157,30 @@ public class ApplicationManagerService {
 
     public void bankAccountCloseMenu(){
         switch(userInputEntity.getUserInputString()){
-            case "y": // deposit
+            case "y": // Delete the account
                 userInputEntity.setActionEnum(ActionEnum.DELETE);
                 userInputEntity.setControllerEnum(ControllerEnum.BANK_ACCOUNTS_MENU);
                 break;
-            case "n": // withdraw
+            case "n": // go back and Read the account
                 userInputEntity.setActionEnum(ActionEnum.READ);
                 userInputEntity.setControllerEnum(ControllerEnum.BANK_ACCOUNT_MENU);
                 break;
         }
     }
 
+    public void bankAccountDepositMenu(){
+        userInputEntity.setActionEnum(ActionEnum.UPDATE);
+        userInputEntity.setControllerEnum(ControllerEnum.BANK_ACCOUNT_MENU);
+
+    }
+
+    public void bankAccountWithdrawMenu(){
+        userInputEntity.setActionEnum(ActionEnum.UPDATE);
+        userInputEntity.setControllerEnum(ControllerEnum.BANK_ACCOUNT_MENU);
+
+    }
+
+//////////////////////////////////
 
     public ControllerEnum getControllerEnum(){
         return userInputEntity.getControllerEnum();

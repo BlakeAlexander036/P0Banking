@@ -1,8 +1,11 @@
 package com.revature.controllers;
 
+import com.revature.exceptions.BalanceIsNotValidException;
+import com.revature.exceptions.WithdrawIsNotValidException;
 import com.revature.services.ApplicationManagerService;
 import com.revature.services.BankAccountService;
 import com.revature.services.UserService;
+import com.revature.utilities.ValidatorUtility;
 import com.revature.views.BankAccountWithdrawView;
 
 import java.util.Scanner;
@@ -20,19 +23,28 @@ public class BankAccountWithdrawController extends BaseController {
     }
 
     // method for calling Terminal view for bank accounts
-    public void displayMainMenu() {
-        bankAccountWithdrawView.displayMenu(userService.getUserEntity());
-        String userChoice = bankAccountWithdrawView.getUserInput();
+    public void displayMenu() {
+        String userChoice = "";
 
-        // Handle user choice
-        // apply action onto enums to see what user has done
-        applicationManagerService.applyAction(userChoice);
+        // set the User Entity username to input
+        boolean isNotValid = true;
+        boolean isNotValidWithdraw = true;
+        while(isNotValid){
+            try{
+                bankAccountWithdrawView.displayMenu(userService.getUserEntity(), bankAccountService.getBankAccountEntity());
+                userChoice = bankAccountWithdrawView.getUserInput();
+                isNotValid = !ValidatorUtility.isValidWithdraw(userChoice, bankAccountService.getBankAccountBalance());
+            }catch (WithdrawIsNotValidException exception){
+                System.out.println(exception.getMessage());
+            }
+        }
 
         // check action enum to decide controller function to call
-        switch(applicationManagerService.getActionEnum()){
+        applicationManagerService.applyAction(userChoice);
 
-        }
+        withdraw(Double.parseDouble(userChoice));
     }
+
 
     public void withdraw(double withdrawAmount) {
         // call the service to withdraw money

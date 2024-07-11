@@ -21,8 +21,8 @@ public class BankAccountMenuController extends BaseController{
     }
 
     // method for calling Terminal view for bank accounts
-    public void displayMainMenu() {
-        bankAccountMenuView.displayMenu(userService.getUserEntity());
+    public void displayMenu() {
+        bankAccountMenuView.displayMenu(userService.getUserEntity(), bankAccountService.getBankAccountEntity());
         String userChoice = bankAccountMenuView.getUserInput();
 
         // Handle user choice
@@ -35,7 +35,7 @@ public class BankAccountMenuController extends BaseController{
 
     // Methods for handling account creation, deposit, withdraw, view accounts
     public void updateBalance() {
-        // call the service for crating a bank account
+        // simply go back to the ApplicationManager.run() loop
     }
 
     public void closeAccount(){

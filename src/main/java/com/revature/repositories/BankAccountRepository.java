@@ -22,7 +22,8 @@ public class BankAccountRepository {
     public void createAccount() {
         fileName = "bank_account_create_account.sql";
         ActionEnum actionEnum = ActionEnum.CREATE;
-        DatabaseScriptRunnerUtility.runSQLScript(fileName, bankAccountEntity, actionEnum);
+        bankAccountEntity.setAccountNumber(DatabaseScriptRunnerUtility.runSQLScriptWithGeneratedKeys(fileName, bankAccountEntity, actionEnum));
+
     }
     public void deposit() {
         fileName = "bank_account_update_balance.sql";
@@ -40,6 +41,7 @@ public class BankAccountRepository {
         bankAccountResults = DatabaseScriptRunnerUtility.runSQLSelectScript(fileName, bankAccountEntity, actionEnum);
         bankAccountEntityList = (List<BankAccountEntity>) (List<?>) bankAccountResults;
     }
+
 
     public void closeAccount() {
         fileName = "bank_account_delete_account.sql";
@@ -89,7 +91,7 @@ public class BankAccountRepository {
         return bankAccountEntity.getAccountNumber();
     }
 
-    public void setBankAccountBalance(int bankAccountNumber) {
+    public void setBankAccountNumber(int bankAccountNumber){
         this.bankAccountEntity.setAccountNumber(bankAccountNumber);
     }
 
@@ -102,5 +104,7 @@ public class BankAccountRepository {
     public void setBankAccountSelectedBankAccountNumber(int bankAccountSelectedBankNumber) {
         this.selectedBankAccount = bankAccountSelectedBankNumber;
     }
+
+
 }
 

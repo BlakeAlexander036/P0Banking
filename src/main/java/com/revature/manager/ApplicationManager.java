@@ -81,28 +81,31 @@ public class ApplicationManager {
             // WE JUST WANT CONTROLLERS HERE IM PRETTY SURE
             switch(userInputEntity.getControllerEnum()){
                 case MAIN_MENU:
-                    mainMenuController.displayMainMenu();
+                    mainMenuController.displayMenu();
                     break;
                 case USER_MENU:
-                    userMenuController.displayMainMenu();
+                    userMenuController.displayMenu();
                     break;
                 case LOGIN_MENU:
-                    userLoginMenuController.displayLoginMenu();
+                    userLoginMenuController.displayMenu();
                     break;
                 case REGISTRATION_MENU:
-                    userRegisterMenuController.displayLoginMenu();
+                    userRegisterMenuController.displayMenu();
                     break;
                 case BANK_ACCOUNTS_MENU:
-                    bankAccountsMenuController.displayMainMenu();
+                    bankAccountsMenuController.displayMenu();
                     break;
                 case BANK_ACCOUNT_MENU:
-                    bankAccountMenuController.displayMainMenu();
+                    bankAccountMenuController.displayMenu();
                     break;
                 case BANK_ACCOUNT_DEPOSIT:
-                    bankAccountDepositController.displayMainMenu();
+                    bankAccountDepositController.displayMenu();
                     break;
                 case BANK_ACCOUNT_WITHDRAW:
-                    bankAccountWithdrawController.displayMainMenu();
+                    bankAccountWithdrawController.displayMenu();
+                    break;
+                case BANK_ACCOUNT_CLOSE:
+                    bankAccountCloseController.displayMenu();
                     break;
                 case NONE:
                     break;

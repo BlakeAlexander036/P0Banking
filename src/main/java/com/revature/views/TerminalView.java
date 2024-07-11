@@ -3,6 +3,7 @@ package com.revature.views;
 import com.revature.entities.BankAccountEntity;
 import com.revature.entities.UserEntity;
 
+import java.util.List;
 import java.util.Scanner;
 
 public abstract class TerminalView {
@@ -12,10 +13,14 @@ public abstract class TerminalView {
         this.scanner = scanner;
     }
 
-    public abstract void displayMenu(UserEntity entity); // need user entity to say if your logged in or not when displaying menu
 
+    public void whiteSpace(){
+        System.out.println("\n\n\n\n\n");
+    }
     public String getUserInput() {
-        return scanner.nextLine();
+        String input = scanner.nextLine();
+        whiteSpace();
+        return input;
     }
 
     public void displayIsLoggedIn(UserEntity userEntity){
@@ -27,8 +32,9 @@ public abstract class TerminalView {
         }
     }
 
-    public void displayCurrentBalance(BankAccountEntity bankAccountEntity){
-        System.out.println("Your Currrent Balance is $" + bankAccountEntity.getBalance());
+    public void displayCurrentBankAccount(BankAccountEntity bankAccountEntity){
+        System.out.println("Currrent Bank Account Number: " + bankAccountEntity.getAccountNumber());
+        System.out.println("Currrent Balance: $" + bankAccountEntity.getBalance());
     }
 
     public void showMessage(String message) {

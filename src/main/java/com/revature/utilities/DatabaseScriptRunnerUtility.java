@@ -67,7 +67,7 @@ public class DatabaseScriptRunnerUtility {
                             results.add(user);
                         } else if (entity instanceof BankAccountEntity) {
                             BankAccountEntity account = new BankAccountEntity();
-                            account.setAccountNumber(resultSet.getInt("account_number"));
+                            account.setAccountNumber(resultSet.getInt("bank_account_number"));
                             account.setBalance(resultSet.getDouble("balance"));
                             account.setUserId(resultSet.getInt("user_id"));
                             results.add(account);
@@ -81,6 +81,39 @@ public class DatabaseScriptRunnerUtility {
             System.out.println(exception.getMessage());
         }
         return results;
+    }
+
+    public static int runSQLScriptWithGeneratedKeys(String sqlFileName, Object entity, ActionEnum actionEnum) {
+        Path sqlPath = Paths.get("src/main/resources/scripts/" + sqlFileName);
+        int generatedId = -1;
+        try {
+            try (
+                    Connection connection = DatabaseConnectorUtility.createConnection();
+                    Stream<String> lines = Files.lines(sqlPath)
+            ) {
+                connection.setAutoCommit(false);
+                StringBuilder sqlBuilder = new StringBuilder();
+                lines.forEach(line -> sqlBuilder.append(line).append("\n"));
+                String sql = sqlBuilder.toString();
+
+                // Prepare the statement
+                try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                    setParameters(preparedStatement, entity, actionEnum);
+                    preparedStatement.executeUpdate();
+
+                    // Retrieve generated keys
+                    ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+                    if (generatedKeys.next()) {
+                        generatedId = generatedKeys.getInt(1);
+                    }
+                }
+
+                connection.commit();
+            }
+        } catch (SQLException | IOException exception) {
+            System.out.println(exception.getMessage());
+        }
+        return generatedId;
     }
 
     private static void setParameters(PreparedStatement preparedStatement, Object entity, ActionEnum actionEnum) throws SQLException {
@@ -105,7 +138,7 @@ public class DatabaseScriptRunnerUtility {
                     DatabaseBankAccountPreparedStatements.getCreateBankAccountPreparedStatement(preparedStatement, bankAccountEntity);
                     break;
                 case READ:
-                    DatabaseBankAccountPreparedStatements.getViewBankAccountPreparedStatement(preparedStatement, bankAccountEntity);
+                    DatabaseBankAccountPreparedStatements.getViewBankAccountsPreparedStatement(preparedStatement, bankAccountEntity);
                     break;
                 case DELETE:
                     DatabaseBankAccountPreparedStatements.getDeleteBankAccountPreparedStatement(preparedStatement, bankAccountEntity);

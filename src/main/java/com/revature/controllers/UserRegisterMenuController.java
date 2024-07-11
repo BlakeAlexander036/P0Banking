@@ -19,7 +19,7 @@ public class UserRegisterMenuController extends BaseController{
         this.userService = userService;
     }
 
-    public void displayLoginMenu() {
+    public void displayMenu() {
         // Handle login
         userRegisterMenuView.displayMenu(userService.getUserEntity());
 

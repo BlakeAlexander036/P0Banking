@@ -1,5 +1,6 @@
 package com.revature.views;
 
+import com.revature.entities.BankAccountEntity;
 import com.revature.entities.UserEntity;
 
 import java.util.Scanner;
@@ -10,11 +11,9 @@ public class BankAccountDepositView extends TerminalView {
         super(scanner);
     }
 
-    @Override
-    public void displayMenu(UserEntity userEntity) {
+    public void displayMenu(UserEntity userEntity, BankAccountEntity bankAccountEntity) {
         super.displayIsLoggedIn(userEntity);
-        //super.displayCurrentBalance(bankAccountEntity);
-        //System.out.println("Your Currrent Balance is $" + displayBalance());
+        super.displayCurrentBankAccount(bankAccountEntity);
         System.out.println("=== Deposit Menu ===");
         System.out.println("Enter the amount you wish to deposit: ");
     }

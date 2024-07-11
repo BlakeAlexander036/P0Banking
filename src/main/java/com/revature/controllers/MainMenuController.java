@@ -17,7 +17,7 @@ public class MainMenuController extends BaseController {
         this.userService = userService;
     }
 
-    public void displayMainMenu() {
+    public void displayMenu() {
         mainMenuView.displayMenu(userService.getUserEntity());
         String userChoice = mainMenuView.getUserInput();
 

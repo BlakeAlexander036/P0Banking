@@ -36,5 +36,11 @@ public class BankAccountEntity {
         this.userId = userId;
     }
 
-
+    @Override
+    public String toString() {
+        return "BankAccountEntity{" +
+                "accountNumber=" + accountNumber +
+                ", balance=" + balance +
+                '}';
+    }
 }

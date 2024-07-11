@@ -12,10 +12,10 @@ public class BankAccountMenuView extends TerminalView {
         super(scanner);
     }
 
-    @Override
-    public void displayMenu(UserEntity userEntity) {
+
+    public void displayMenu(UserEntity userEntity, BankAccountEntity bankAccountEntity) {
         super.displayIsLoggedIn(userEntity);
-        //super.displayCurrentBalance(bankAccountEntity);
+        super.displayCurrentBankAccount(bankAccountEntity);
         System.out.println("=== Bank Account Menu ===");
         System.out.println("1. Deposit");
         System.out.println("2. Withdraw");

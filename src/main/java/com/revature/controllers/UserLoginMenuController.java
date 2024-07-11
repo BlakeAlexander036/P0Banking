@@ -1,7 +1,9 @@
 package com.revature.controllers;
 
+import com.revature.exceptions.UsernameAndPasswordDoesNotExistException;
 import com.revature.services.ApplicationManagerService;
 import com.revature.services.UserService;
+import com.revature.utilities.ValidatorUtility;
 import com.revature.views.UserLoginMenuView;
 
 import java.util.Scanner;
@@ -19,24 +21,40 @@ public class UserLoginMenuController extends BaseController{
 
     }
 
-    public void displayLoginMenu() {
-        userLoginMenuView.displayMenu(userService.getUserEntity());
-        userLoginMenuView.displayEnterUsername();
+    public void displayMenu() {
+        boolean isNotValid = true;
+        String userChoice = "";
 
-        // set the User Entity username to input
-        String userChoice = userLoginMenuView.getUserInput();
-        userService.setUsername(userChoice);
+        while(isNotValid){
+            try{
+                userLoginMenuView.displayMenu(userService.getUserEntity());
+                userLoginMenuView.displayEnterUsername();
 
-        // set the User Entity password to input
-        userLoginMenuView.displayEnterPassword();
-        userChoice = userLoginMenuView.getUserInput();
-        userService.setPassword(userChoice);
+                // set the User Entity username to input
+                userChoice = userLoginMenuView.getUserInput();
+                if(userChoice.equals("0")) {break;}
+                userService.setUsername(userChoice);
+
+                // set the User Entity password to input
+                userLoginMenuView.displayEnterPassword();
+                userChoice = userLoginMenuView.getUserInput();
+                if(userChoice.equals("0")) {break;}
+                userService.setPassword(userChoice);
+
+                login();
+
+                isNotValid = ValidatorUtility.isValidPasswordAndUsernameLoginUserInDB(userService.getUserEntity());
+            } catch (UsernameAndPasswordDoesNotExistException exception){
+                System.out.println(exception.getMessage());
+            }
+        }
+
 
         // Handle user choice
         // apply action onto enums to see what user has done
         applicationManagerService.applyAction(userChoice);
 
-        login();
+
 
     }
 

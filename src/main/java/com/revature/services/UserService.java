@@ -37,6 +37,9 @@ public class UserService {
 
     public void logoutUser() {
         // Business logic for getting a user by username
+        // set userId to null
+        setUserId(-1);
+
         //set username and password to null;
         setUsername(null);
         setPassword(null);
@@ -68,5 +71,13 @@ public class UserService {
 
     public boolean getIsLoggedIn(){
         return userRepository.getUserEntity().getIsLoggedIn();
+    }
+
+    public int getUserId(){
+        return userRepository.getUserEntity().getUserId();
+    }
+
+    public void setUserId(int userId){
+        userRepository.getUserEntity().setUserId(userId);
     }
 }

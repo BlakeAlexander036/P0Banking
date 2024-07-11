@@ -1,10 +1,8 @@
 package com.revature.controllers;
 
-import com.revature.entities.UserEntity;
 import com.revature.services.ApplicationManagerService;
 import com.revature.services.BankAccountService;
 import com.revature.services.UserService;
-import com.revature.views.MainMenuView;
 import com.revature.views.UserMenuView;
 
 import java.util.Scanner;
@@ -22,7 +20,7 @@ public class UserMenuController extends BaseController{
         this.userMenuView = new UserMenuView(scanner);
     }
 
-    public void displayMainMenu() {
+    public void displayMenu() {
         userMenuView.displayMenu(userService.getUserEntity());
         String userChoice = userMenuView.getUserInput();
 
@@ -34,9 +32,10 @@ public class UserMenuController extends BaseController{
         switch(applicationManagerService.getActionEnum()){
             case CREATE: // Create Bank Account
                 createBankAccount();
+                userMenuView.displayBankAccountCreated(bankAccountService.getBankAccountEntity());
                 break;
             case READ: // View Bank Accounts
-                viewBankAccount();
+                viewBankAccounts();
                 break;
             case EXIT: // Exit
                 logout();
@@ -45,11 +44,16 @@ public class UserMenuController extends BaseController{
     }
 
     public void createBankAccount(){
-        bankAccountService.createAccount();
+        // we need the userId to create an account
+        bankAccountService.createAccount(userService.getUserEntity());
     }
 
-    public void viewBankAccount(){
+    public void viewBankAccounts(){
+        // we need to initilize the bank account list / bank account
+        // you should already be logged in, set bank entity user id to user id
+        bankAccountService.setBankAccountUserId(userService.getUserId());
         bankAccountService.viewAccounts();
+
     }
 
     public void logout(){

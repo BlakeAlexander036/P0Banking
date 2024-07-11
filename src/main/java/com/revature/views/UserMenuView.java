@@ -1,5 +1,6 @@
 package com.revature.views;
 
+import com.revature.entities.BankAccountEntity;
 import com.revature.entities.UserEntity;
 
 import java.util.Scanner;
@@ -16,6 +17,10 @@ public class UserMenuView extends TerminalView{
         System.out.println("2. View Bank Accounts");
         System.out.println("3. Logout");
         System.out.print("Select an option: ");
+    }
+
+    public void displayBankAccountCreated(BankAccountEntity bankAccountEntity){
+        System.out.println("You have created a new bank account with account number: " + bankAccountEntity.getAccountNumber());
     }
 
 }

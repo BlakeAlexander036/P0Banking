@@ -4,7 +4,6 @@ import com.revature.services.ApplicationManagerService;
 import com.revature.services.BankAccountService;
 import com.revature.services.UserService;
 import com.revature.views.BankAccountCloseView;
-import com.revature.views.BankAccountDepositView;
 
 import java.util.Scanner;
 
@@ -22,8 +21,8 @@ public class BankAccountCloseController extends BaseController{
     }
 
     // method for calling Terminal view for bank accounts
-    public void displayMainMenu() {
-        bankAccountCloseView.displayMenu(userService.getUserEntity());
+    public void displayMenu() {
+        bankAccountCloseView.displayMenu(userService.getUserEntity(), bankAccountService.getBankAccountEntity());
         String userChoice = bankAccountCloseView.getUserInput();
 
         // Handle user choice
@@ -32,12 +31,21 @@ public class BankAccountCloseController extends BaseController{
 
         // check action enum to decide controller function to call
         switch(applicationManagerService.getActionEnum()){
-
+            case DELETE:
+                close();
+                break;
+            case READ:
+                goBackToMenu();
+                break;
         }
     }
 
     public void close() {
         // call the service to close account
         bankAccountService.close();
+    }
+
+    public void goBackToMenu(){
+        // do nothing,
     }
 }
