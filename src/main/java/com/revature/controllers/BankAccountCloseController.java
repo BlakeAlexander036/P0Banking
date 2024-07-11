@@ -3,6 +3,7 @@ package com.revature.controllers;
 import com.revature.services.ApplicationManagerService;
 import com.revature.services.BankAccountService;
 import com.revature.services.UserService;
+import com.revature.views.BankAccountCloseView;
 import com.revature.views.BankAccountDepositView;
 
 import java.util.Scanner;
@@ -15,7 +16,7 @@ public class BankAccountCloseController extends BaseController{
 
     public BankAccountCloseController(Scanner scanner, ApplicationManagerService applicationManagerService, BankAccountService bankAccountService, UserService userService) {
         super(scanner, applicationManagerService);
-        this.bankAccountDepositView = new BankAccountDepositView(scanner);
+        this.bankAccountCloseView = new BankAccountCloseView(scanner);
         this.bankAccountService = bankAccountService;
         this.userService = userService;
     }

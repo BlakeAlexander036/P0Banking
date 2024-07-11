@@ -45,6 +45,14 @@ public class BankAccountService {
         // Implement logic to retrieve and return the BankAccount objects based on the executed script.
     }
 
+    public void close(){
+        // close the account
+        bankAccountRepository.closeAccount();
+    }
+
+    //////////////////////////////////////////////////
+
+
     // bank account entity
     public BankAccountEntity getBankAccountEntity(){
         return bankAccountRepository.getBankAccountEntity();

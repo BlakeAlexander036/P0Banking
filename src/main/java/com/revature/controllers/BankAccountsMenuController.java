@@ -39,7 +39,9 @@ public class BankAccountsMenuController extends BaseController{
         }
     }
 
-    public void readSelectedBankAccount(){}
+    public void readSelectedBankAccount(){
+        // make bankAccountEntity = to bank account in bankAccountList(?));
+    }
 
     public void backToUserMenu() {}
 }
