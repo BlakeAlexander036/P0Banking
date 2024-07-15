@@ -16,15 +16,8 @@ public class DatabaseBankAccountPreparedStatements {
 
     // Bank Account PreparedStatements
 
-    // Deposit
-    public static PreparedStatement getDepositBankAccountPreparedStatement(PreparedStatement preparedStatement, BankAccountEntity bankAccountEntity) throws SQLException {
-        preparedStatement.setDouble(1, bankAccountEntity.getBalance());
-        preparedStatement.setInt(2, bankAccountEntity.getAccountNumber());
-        return preparedStatement;
-    }
-
-    // Withdraw
-    public static PreparedStatement getWithdrawBankAccountPreparedStatement(PreparedStatement preparedStatement, BankAccountEntity bankAccountEntity) throws SQLException {
+    // update: Deposit and withdraw
+    public static PreparedStatement getUpdateBankAccountPreparedStatement(PreparedStatement preparedStatement, BankAccountEntity bankAccountEntity) throws SQLException {
         preparedStatement.setDouble(1, bankAccountEntity.getBalance());
         preparedStatement.setInt(2, bankAccountEntity.getAccountNumber());
         return preparedStatement;

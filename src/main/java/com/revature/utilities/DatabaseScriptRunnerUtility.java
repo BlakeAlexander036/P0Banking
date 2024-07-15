@@ -132,7 +132,7 @@ public class DatabaseScriptRunnerUtility {
             BankAccountEntity bankAccountEntity = (BankAccountEntity) entity;
             switch(actionEnum){
                 case UPDATE:
-                    DatabaseBankAccountPreparedStatements.getDepositBankAccountPreparedStatement(preparedStatement, bankAccountEntity);
+                    DatabaseBankAccountPreparedStatements.getUpdateBankAccountPreparedStatement(preparedStatement, bankAccountEntity);
                     break;
                 case CREATE:
                     DatabaseBankAccountPreparedStatements.getCreateBankAccountPreparedStatement(preparedStatement, bankAccountEntity);
