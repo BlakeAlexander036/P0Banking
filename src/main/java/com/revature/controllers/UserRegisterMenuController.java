@@ -1,5 +1,6 @@
 package com.revature.controllers;
 
+import com.revature.exceptions.PasswordIsNotValidException;
 import com.revature.exceptions.UsernameAlreadyExistsException;
 import com.revature.exceptions.UsernameIsNotValidException;
 import com.revature.services.ApplicationManagerService;
@@ -48,7 +49,7 @@ public class UserRegisterMenuController extends BaseController{
                     userRegisterMenuView.displayEnterPassword();
                     userChoice = userRegisterMenuView.getUserInput();
                     isNotValid = !ValidatorUtility.isValidPassword(userChoice);
-                } catch (UsernameIsNotValidException exception) {
+                } catch (PasswordIsNotValidException exception) {
                     System.out.println(exception.getMessage());
                 }
             }
