@@ -34,7 +34,7 @@ public abstract class TerminalView {
 
     public void displayCurrentBankAccount(BankAccountEntity bankAccountEntity){
         System.out.println("Currrent Bank Account Number: " + bankAccountEntity.getAccountNumber());
-        System.out.println("Currrent Balance: $" + bankAccountEntity.getBalance());
+        System.out.println("Currrent Balance: $" + String.format("%.2f", bankAccountEntity.getBalance()));
     }
 
     public void showMessage(String message) {

@@ -39,8 +39,8 @@ public class BankAccountEntity {
     @Override
     public String toString() {
         return "BankAccountEntity{" +
-                "accountNumber=" + accountNumber +
-                ", balance=" + balance +
+                "accountNumber= " + accountNumber +
+                ", balance= $" + String.format("%.2f", balance) +
                 '}';
     }
 }

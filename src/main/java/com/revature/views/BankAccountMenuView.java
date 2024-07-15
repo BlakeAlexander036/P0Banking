@@ -24,8 +24,5 @@ public class BankAccountMenuView extends TerminalView {
         System.out.print("Select an option: ");
     }
 
-    public void displayAllBankAccounts(List<BankAccountEntity> bankAccountEntityList){
-
-    }
 
 }
